@@ -23,15 +23,13 @@ class testApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
-    
-        float pct;
-    
+        
         Rectangle myRect;
         
     
         float velocity, time, finalTime, pixelsInInches, squareSpeed, pixelsPerFrameRate, windowSize, windowSizeInches, timeToMove1Pixel, pixelsPerTime, squareSpeedInInches, timeToArrive;
     
-//    vector < Rectangle > myRectangles;
+
     
         
     

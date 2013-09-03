@@ -24,10 +24,11 @@ class testApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
     
         Rectangle myRect;
-        float pct;
-    
+        
+        //We use a Vector to have our square follow each other
         vector < Rectangle > myRects;
     
+        //This is the number of circles we want to have
         int numRectangles = 9;
 		
 };

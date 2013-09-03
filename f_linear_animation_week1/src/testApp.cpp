@@ -10,21 +10,18 @@ void testApp::setup(){
     myRect.pos.x = ofGetWindowWidth() / 2;
     myRect.pos.y = ofGetWindowHeight() / 2;
     
-    myRect.posa.x = 10;
-    myRect.posa.y = 100;
+   
     
-    myRect.posb.x = 500;
-    myRect.posb.y = 540;
-    
-    myRect.interpolateByPct(0.0f);
-    
-    pct = 0;
+
     ofSetRectMode(OF_RECTMODE_CENTER);
     
     for( int i = 0; i < numRectangles; i++){
         
-        Rectangle myRect;
-        myRects.push_back(myRect);
+        //This is how we initialize our vector.
+        Rectangle vectorFromRect;
+        
+        //Vectors are dynamic in size, we create a rectangle and then use push_back to add it.
+        myRects.push_back(vectorFromRect);
         
     }
     
@@ -46,16 +43,14 @@ void testApp::update(){
         
         myRects[i].zenoToPoint(myRects[i - 1].pos.x, myRects[i - 1].pos.y);
         
-//        myRects[i].zenoToPoint(mouseX+i*10, mouseY-i*10);
-//        myRects[i].zenoToPoint(myRects[i-1].pos.x,myRects[i-1].pos.y);
+//        myRects[i].zenoToPoint(mouseX+i*10, mouseY-i*10);// Cool 3d effect courtesy of Matt Griffis
+
     }
 }
 
 //--------------------------------------------------------------
 void testApp::draw(){
-    
-//    myRect.draw();
-    
+     
     
     for( int i = 0; i < myRects.size(); i++){
         
@@ -65,7 +60,7 @@ void testApp::draw(){
     
     ofSetColor(255);
     
-    ofDrawBitmapString( ofToString(pct), ofPoint(10, 10));
+  
 
 }
 

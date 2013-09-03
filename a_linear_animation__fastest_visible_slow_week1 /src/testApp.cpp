@@ -4,25 +4,7 @@
 void testApp::setup(){
     
     //Allows clear updating of vertically on the screen
-    ofSetVerticalSync(true);
-    
-  
-    
-    //Calling the position of the rectangle from the main .cpp file. Because the class is public we can call it here.
-//  myRect.pos.x = ofGetWindowWidth() / 2;
-//  myRect.pos.y = ofGetWindowHeight() / 2;
-    
-    myRect.posa.x = 10;
-    myRect.posa.y = 100;
-    
-    myRect.posb.x = 500;
-    myRect.posb.y = 540;
-    
-    myRect.interpolateByPct(0.0f);
-    
-    pct = 0;
-//  ofSetRectMode(OF_RECTMODE_CENTER);
-    
+    ofSetVerticalSync(true);   
     
     myRect.pos.x = 0;
     myRect.pos.y = 20;
@@ -39,7 +21,7 @@ void testApp::setup(){
     pixelsInInches = windowSizeInches / windowSize;
     
     //This number decides how many pixels move per frame rate if the frame rate is 60 it will move 60 pixels in one second
-    pixelsPerFrameRate = 1;
+    pixelsPerFrameRate = 0.002f;
     
     //It gives me pixels/seconds. It gives us the speed of how many pixels move per second based on the frame rate
     pixelsPerTime = pixelsPerFrameRate * ofGetFrameRate();
@@ -50,15 +32,7 @@ void testApp::setup(){
 //--------------------------------------------------------------
 void testApp::update(){
 
-//    myRect.update();
-//    pct += 0.001f;
-//    if( pct > 1){
-//        pct = 0;
-//    }
-//
-//   myRect.interpolateByPct(pct);
-    
-     //Here is what we move the square
+
      myRect.pos.x += pixelsPerFrameRate; 
     
     
@@ -70,10 +44,6 @@ void testApp::update(){
    
  
     myRect.update();
-    
-    
-
-//    myRect.zenoToPoint(mouseX, mouseY);
     
 }
 
@@ -101,12 +71,7 @@ void testApp::draw(){
     ofDrawBitmapString("Time Traveled = " + ofToString((finalTime)) + "secs" + " At a speed of = " + ofToString(squareSpeedInInches) + " inches/secs " , ofPoint(ofGetWindowWidth()/4, 10));
     
     
-    ofDrawBitmapString("Time to get to the end of the screen = " + ofToString(timeToArrive,2), ofPoint(50, 500));
-    
-
-    
-    
-        
+    ofDrawBitmapString("Time to get to the end of the screen = " + ofToString((timeToArrive / 60),2) + "Minutes", ofPoint(50, 500));       
 
 }
 

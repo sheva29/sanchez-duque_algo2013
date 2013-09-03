@@ -25,10 +25,6 @@ public:
     void zenoToPoint( float catchX, float catchY );
     
     ofPoint pos;    
-    //Allows to move the rectangle from one position to the other one. Use comas to have several variables in one object.
-    ofPoint posa, posb;
+    
 
-    
-    float pct;
-    
 };
