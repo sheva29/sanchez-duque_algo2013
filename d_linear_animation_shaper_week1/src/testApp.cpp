@@ -65,7 +65,8 @@ void testApp::draw(){
     
     
         myRect[i].draw();
-        cout << myRect[i].draw() << endl;
+        // Watch out for this cout call - syntax error.
+        //cout << myRect[i].draw() << endl;
     }
     
     ofSetColor(255);
