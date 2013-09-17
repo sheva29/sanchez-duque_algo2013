@@ -85,7 +85,7 @@ void testApp::update(){
 void testApp::draw(){
     
    
-    ofBackgroundGradient(50, 0);
+    ofBackgroundGradient(255, 0);
     myRect.draw();
     
     
