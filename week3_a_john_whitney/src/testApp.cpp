@@ -45,7 +45,7 @@ void testApp::draw(){
         //Determines the speed and number of branches created by the balls.
         float alpha = (i * 2 * PI / numberOfPoints) * 3;
         SetPointsColor(n + alpha);
-        float r = rad * -sin( n * alpha / 6);
+        float r = rad * sin( n * alpha / 6);
         //Changes the position based on the angle using cos and sine
         pos.x = _start.x + cos(alpha) * r * 2;
         pos.y = _start.y + sin(alpha) * r * 2;

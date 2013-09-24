@@ -10,7 +10,7 @@ public:
     void draw();
     void zenoToCookie(ofVec2f _mousePos, float _accelCoe);
     
-    ofVec2f vel, acce, pos, mousePos;
+    ofVec2f vel, acce, pos, mousePos, cookieCoe;
     
     ofImage _cookieMonster;
     
