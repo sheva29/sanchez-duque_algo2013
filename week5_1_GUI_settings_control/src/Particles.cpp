@@ -53,8 +53,8 @@ void Particles::draw(){
     
     ofPushMatrix();{
         //We want to draw our squares at the  new origin. All of them
-//        ofTranslate(0);
-//        ofRotate( 30 );
+        ofTranslate(pos);
+        ofRotate( 30 );
         ofRect(pos.x, pos.y, rectSize, rectSize);
     }ofPopMatrix();
     
