@@ -26,6 +26,8 @@ public:
     
     ofVec2f pos;
     
+    float resCoe;
+    
     
     
     

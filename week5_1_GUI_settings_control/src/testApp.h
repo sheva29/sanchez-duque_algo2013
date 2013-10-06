@@ -31,4 +31,7 @@ public:
     
     vector < Particles > imgParticles;
     
+    float rectMax;
+    
+    
 };

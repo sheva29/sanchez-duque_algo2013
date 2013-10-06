@@ -16,6 +16,7 @@ Particles::Particles(ofVec2f position){
     diagonal = 0;
     tempSize = 0;
     rectSize = 0;
+    resCoe = 20;
     
 }
 
@@ -23,7 +24,7 @@ Particles::Particles(ofVec2f position){
 void Particles::update(ofImage img){
     
     
-    
+    //Uncomment if you want to have some particles dancing. It might get super slow though.
     //    pos.x = ofRandom(0, ofGetWindowWidth());
     //    pos.y = ofRandom(0, ofGetWindowHeight());
     
@@ -31,7 +32,7 @@ void Particles::update(ofImage img){
     
     tempSize = ofDist(ofGetMouseX(), ofGetMouseY(), pos.x, pos.y);
     
-    rectSizeMax = 1;
+
     rectSize = ofMap( tempSize, 0, diagonal, 0, rectSizeMax);
     
     pixelColor = img.getColor(pos.x,pos.y);
@@ -43,14 +44,19 @@ void Particles::update(ofImage img){
 void Particles::draw(){
     
     
-    
-    
-    
     //Eventhough the variables are inside the loop we don't have to get int i involved, Why?
+    
+    //We take the color from our picture for our squares based on their position
     
     
     ofSetColor(pixelColor);
-    ofRect(pos.x, pos.y, rectSize, rectSize);
+    
+    ofPushMatrix();{
+        //We want to draw our squares at the  new origin. All of them
+//        ofTranslate(0);
+//        ofRotate( 30 );
+        ofRect(pos.x, pos.y, rectSize, rectSize);
+    }ofPopMatrix();
     
     
     

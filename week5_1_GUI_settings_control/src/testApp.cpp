@@ -5,7 +5,8 @@ void testApp::setup(){
     
     ofSetVerticalSync(true);
     ofSetBackgroundAuto(true);
-    
+  
+ 
     //Let's do our GUI elements
     
     //We initiate our pointer
@@ -13,23 +14,21 @@ void testApp::setup(){
     gui->addLabel("Controller");
     gui->addSpacer();
     gui->addButton("makeRound", false, 44,44);
-    gui->setColorBack(ofColor(0));
+    gui->setColorBack(ofColor(200));
     gui->setWidgetColor(OFX_UI_WIDGET_COLOR_BACK, ofColor(255,100));
-    gui->addSlider("particleSize",0, 10,5);
+    gui->addSlider("particleSize",0, 10,2);
     
     ofAddListener(gui->newGUIEvent, this, &testApp::onGuiEvent);
 
     gui->loadSettings("guiSettings.xml");
-
-    
     
     
     //Let's work with our image
+    
     bitchPls.loadImage("rdjr.jpg");
     
-    int xRes = 50;//*floor( bitchPls.getWidth()  / 8/*/ 20.0 */);
-    
-    int yRes = 40;//floor( bitchPls.getHeight() / 8/* / 20.0 */ ) ;
+    int xRes = floor( bitchPls.getWidth()  / 20.0 );
+    int yRes = floor( bitchPls.getHeight() /  20.0 );
     
     for ( int x = 0; x < xRes; x++){
         for( int y = 0; y < yRes; y++){
@@ -38,6 +37,10 @@ void testApp::setup(){
             
         }
     }
+    
+    ofPopMatrix();
+    
+    
 
     
     
@@ -61,15 +64,22 @@ void testApp::onGuiEvent(ofxUIEventArgs &e){
         
         ofxUISlider *particleSize= (ofxUISlider *)e.widget;
         
+     
         vector < Particles >::iterator it;
         for( it = imgParticles.begin(); it != imgParticles.end(); ++it){
             
-            
-            
+            //Here we assigned our value to the slider
             it->rectSizeMax = particleSize->getScaledValue();
             
             cout << " Got a message!" << name << " - " << particleSize->getValue() << endl;
         }
+        
+//Using a regular forloop
+//        for( int i = 0; i < imgParticles.size(); i++){
+//            
+//            imgParticles[i].rectSizeMax = particleSize->getScaledValue();
+//             cout << " Got a message!" << name << " - " << particleSize->getValue() << endl;
+//        }
         
     }
     
@@ -78,8 +88,11 @@ void testApp::onGuiEvent(ofxUIEventArgs &e){
 //--------------------------------------------------------------
 void testApp::addParticle(float x, float y){
     
-    float xPos = (x + 0.5f) * 10.0;
-    float yPos = (y + 0.5f) * 10.0;
+//    float xPos = (x + 0.5f) * 10.0;
+//    float yPos = (y + 0.5f) * 10.0;
+    
+    float xPos = x * 20;
+    float yPos = y * 20;
     
     Particles tmp( ofVec2f( xPos, yPos));
     imgParticles.push_back(tmp);
@@ -89,11 +102,18 @@ void testApp::addParticle(float x, float y){
 
 //--------------------------------------------------------------
 void testApp::update(){
-    
-    for( int i =0; i < imgParticles.size(); i++){
+   
+    vector< Particles >::iterator it;
+    for( it = imgParticles.begin(); it != imgParticles.end(); ++it){
         
-        imgParticles[i].update( bitchPls );
+        (*it).update(bitchPls);
     }
+    
+    
+//    for( int i =0; i < imgParticles.size(); i++){
+//        
+//        imgParticles[i].update( bitchPls/*, rectMax*/ );
+//    }
     
     
 }
@@ -110,14 +130,13 @@ void testApp::draw(){
     //
     
     vector<Particles>::iterator it;
-    
     for( it = imgParticles.begin(); it != imgParticles.end(); ++it){
-        
-        it->draw();
+            
+//            ofRotate(45);
+            it->draw();
         
     }
-    
-   
+
     
 //    for( int i = 0; i < imgParticles.size(); i++){
 //        
