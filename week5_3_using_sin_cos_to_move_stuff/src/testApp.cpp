@@ -14,7 +14,7 @@ void testApp::setup(){
     period = 500.0f;
     dx = (TWO_PI / period) * xSpacing;
     yValues[w/xSpacing];
-    
+
     cout << yValues << endl;
     cout << yValues_SIZE << endl;
 

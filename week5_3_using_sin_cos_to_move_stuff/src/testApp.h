@@ -30,7 +30,7 @@ class testApp : public ofBaseApp{
     float yValues[8];
     
     //we use a new int to declare the size of our initial yValues
-    int yValues_SIZE = sizeof(yValues) / sizeof(yValues[0]);
+    const unsigned int yValues_SIZE = sizeof(yValues) / sizeof(yValues[0]);
 
     
     void calculateWave();
