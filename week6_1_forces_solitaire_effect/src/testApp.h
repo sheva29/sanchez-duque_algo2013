@@ -25,5 +25,6 @@ class testApp : public ofBaseApp{
     vector < Particle > particleGroup;
     
     ofVec2f pos;
+  
 		
 };

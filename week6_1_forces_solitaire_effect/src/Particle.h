@@ -22,7 +22,8 @@ public:
     void update();
     void draw();
     
-    
+    ofColor particleColor;
+    float h, s, b, a;
 
     
     

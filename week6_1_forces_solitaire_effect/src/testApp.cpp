@@ -9,9 +9,10 @@ void testApp::setup(){
     ofBackground(0);
     
     pos = ofPoint(900, 100);
+ 
     
  
-    for( int i = 0; i < 20; i++){
+    for( int i = 0; i < 30; i++){
         addParticle();
     }
 }
@@ -26,8 +27,7 @@ void testApp::addParticle(){
 }
 //--------------------------------------------------------------
 void testApp::update(){
-    
-    ofVec2f gravity( 0.0 , 2);
+    ofVec2f gravity( 0.0 , 10);
     ofVec2f wind( 0.1, 0.0);
     
     vector < Particle >::iterator it;
@@ -44,8 +44,18 @@ void testApp::update(){
 //--------------------------------------------------------------
 void testApp::draw(){
 
+    ofEnableAlphaBlending();
+    ofColor newBackground;
+    newBackground = ofColor( 0 , 50);
+    ofSetColor(newBackground);
+    ofRect( 0,0,ofGetWindowWidth(), ofGetWindowHeight());
+    
+    
     for( int i = 0; i < particleGroup.size(); i++){
         
+        
+        
+        ofSetColor(particleGroup[i].particleColor);
         particleGroup[i].draw();
     }
     
