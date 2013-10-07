@@ -15,7 +15,7 @@ void testApp::setup(){
     dx = (TWO_PI / period) * xSpacing;
     yValues[w/xSpacing];
     
-    cout << sizeof(yValues) << endl;
+    cout << yValues << endl;
     cout << yValues_SIZE << endl;
 
     
@@ -32,7 +32,9 @@ void testApp::calculateWave(){
         
         yValues[i] = sin(x) * amplitude;
         x += dx;
-//        cout << " This is the value of yValues: " << yValues[i] << endl;
+       
+        cout << " This is the value of yValues: " << yValues[i] << endl;
+        
     }
     
 }
@@ -50,8 +52,9 @@ void testApp::renderWave(){
 }
 //--------------------------------------------------------------
 void testApp::update(){
-
-     calculateWave();
+//     xSpacing = sin( ofGetElapsedTimef());
+    
+    calculateWave();
     
     
 }
@@ -59,7 +62,6 @@ void testApp::update(){
 //--------------------------------------------------------------
 void testApp::draw(){
     
-   
    renderWave();
 
 }
