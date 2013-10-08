@@ -46,7 +46,7 @@ void testApp::draw(){
 
     ofEnableAlphaBlending();
     ofColor newBackground;
-    newBackground = ofColor( 0 , 50);
+    newBackground = ofColor( 0 , 2);
     ofSetColor(newBackground);
     ofRect( 0,0,ofGetWindowWidth(), ofGetWindowHeight());
     

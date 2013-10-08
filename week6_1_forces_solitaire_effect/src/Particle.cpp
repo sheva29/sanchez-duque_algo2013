@@ -10,16 +10,20 @@
 
 
 
-Particle::Particle( ofVec2f position){
+Particle::Particle(ofVec2f position){
     
     pos = position;
+//    pos= ofVec2f(ofRandom(-5, 5), ofRandom(-5,5));
     mass = 1.0;
     _size = ofRandom(5,20);
+    
+    //We set some random colors for our particles using hsb
     h = ofRandom( 0, 255);
     s = ofRandom( 0, 255);
     b = ofRandom( 0, 255);
     a = ofRandom( 0, 100);
     
+    //We set the color based on our random values
     particleColor.setHsb(h, s, b, a );
     ofSetColor(particleColor);
     
@@ -53,8 +57,6 @@ void Particle::update(){
 void Particle::draw(){
     
    
-//    ofSetColor(h);
-    
     ofCircle( pos, _size);
     
 }

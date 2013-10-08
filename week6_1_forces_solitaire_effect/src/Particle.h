@@ -13,7 +13,7 @@ class Particle {
     
 public:
     
-    Particle( ofVec2f position);
+    Particle( ofVec2f position );
     ofVec2f pos, vel, acc;
     
     float mass, _size;
