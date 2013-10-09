@@ -10,7 +10,7 @@ void testApp::setup(){
     ofSetBackgroundAuto(false);
     ofSeedRandom();
     period = 10000;
-    rStart = 30 + ofRandom(60);
+    rStart = 10 + ofRandom(60);
     numberOfPoints = 512;
     _size = 4;
 //    for( int i = 0; i <)
@@ -39,7 +39,7 @@ void testApp::draw(){
     
     //ofBackground(0);
     
-    float n = ofGetElapsedTimeMillis()/ period + rStart;
+    float n = (ofGetElapsedTimeMillis()/ period + rStart) ;
     float rad = ofGetWindowWidth() * 0.97f/2;
     _start = ofGetWindowSize()/2;
     for( int i = 0; i < numberOfPoints; i++){
