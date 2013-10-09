@@ -28,7 +28,6 @@ public:
     
     ofColor h;
     
-    static const float G = 1.0;
     
     
 private:

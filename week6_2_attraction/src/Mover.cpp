@@ -38,7 +38,7 @@ void Mover::update(){
 void Mover::draw(){
     
     ofSetColor(h);
-    ofCircle(pos,mass);
+    ofCircle(pos,mass*2);
   
     
 }

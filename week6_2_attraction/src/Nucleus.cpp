@@ -16,10 +16,12 @@ Nucleus::Nucleus(){
     red.setHsb(ofRandom(0,20), 255, 255, 100);
     pos = ofVec2f(ofRandom(ofGetWindowWidth()), ofRandom(ofGetWindowHeight()));
     vel.set(ofRandom(3));
-    mass = ofRandom(0,10);
+    mass = ofRandom(3,5);
     
-    
+    //This starts the number electrons around our nucleus. And yes! protons are in the same number as electrons on an atomic particle
     numberOfProtons = 2;
+    
+    //We start the particle revolving around our nucleus
     for ( int i = 0; i < numberOfProtons; i++){
         
         Mover tmp;
@@ -29,6 +31,7 @@ Nucleus::Nucleus(){
     
 }
 
+//This force will determine how our revolving will behave
 ofVec2f Nucleus::attract( Mover p){
     
     
@@ -54,23 +57,27 @@ void Nucleus::applyForce(ofVec2f force){
 
 void Nucleus::update(){
     
-    
+    //This is where the magic happens. So
     vector < Mover >::iterator it;
     for(it = particles.begin(); it != particles.end(); it++){
         
+        //This is the forced casted from the result of the particles taht are attracted to the nucleus
         ofVec2f pull = attract(*it);
+        //Here we cast that force to apply it to the electrons
         it->applyForce(pull);
         it->update();
-        (*it).update();
+       
         
     }
     
     vel += acc;
     pos += vel;
     
-    acc.set(0);
+    //Happened to turn this off and seems to work. I forgot why the acceleration gets set to zero.
+//    acc.set(0);
     
     
+    //This rules here are for the atom to bounce on the screen
     if( pos.x < mass*10 || pos.x > ofGetWindowWidth() - mass*10){
         
         vel.x = -vel.x;
@@ -87,7 +94,7 @@ void Nucleus::update(){
 
 void Nucleus::draw(){
     
-    
+    //We finally draw our nucleus with our electrons
     vector< Mover>::iterator it;
     for( it = particles.begin(); it != particles.end(); it++){
         
