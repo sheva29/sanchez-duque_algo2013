@@ -5,6 +5,7 @@ void testApp::setup(){
     
     ofSetVerticalSync(true);
     ofSetBackgroundAuto(true);
+    ofEnableAlphaBlending();
   
  
     //Let's do our GUI elements
@@ -14,9 +15,14 @@ void testApp::setup(){
     gui->addLabel("Controller");
     gui->addSpacer();
     gui->addButton("makeRound", false, 44,44);
-    gui->setColorBack(ofColor(200));
-    gui->setWidgetColor(OFX_UI_WIDGET_COLOR_BACK, ofColor(255,100));
+    //We give the GUI background a bit of transparency
+    gui->setColorBack(ofColor(0, 50));
+    gui->setWidgetColor(OFX_UI_WIDGET_COLOR_BACK, ofColor(0));
+    //This one controls the size of my particles
     gui->addSlider("particleSize",0, 10,2);
+    
+    //This one controls the rotation on my particles
+    gui->addSlider("particleAngle",0,45,1);
     
     ofAddListener(gui->newGUIEvent, this, &testApp::onGuiEvent);
 
@@ -62,25 +68,45 @@ void testApp::onGuiEvent(ofxUIEventArgs &e){
     
     if( name == "particleSize"){
         
-        ofxUISlider *particleSize= (ofxUISlider *)e.widget;
+        ofxUISlider *particleSize = (ofxUISlider *)e.widget;
         
      
         vector < Particles >::iterator it;
         for( it = imgParticles.begin(); it != imgParticles.end(); ++it){
             
-            //Here we assigned our value to the slider
+            //Here we assigned our value to the  size slider
             it->rectSizeMax = particleSize->getScaledValue();
             
             cout << " Got a message!" << name << " - " << particleSize->getValue() << endl;
         }
         
-//Using a regular forloop
-//        for( int i = 0; i < imgParticles.size(); i++){
-//            
-//            imgParticles[i].rectSizeMax = particleSize->getScaledValue();
-//             cout << " Got a message!" << name << " - " << particleSize->getValue() << endl;
-//        }
+    }
+    
+    if( name =="particleAngle"){
         
+        
+        ofxUISlider *particleAngle = ( ofxUISlider *)e.widget;
+        
+     
+        for( int i = 0; i < imgParticles.size(); ++i){
+            
+            imgParticles[i]._angle = particleAngle->getScaledValue();
+            
+        }
+        
+    }
+    
+    if( e.getName() == "makeRound"){
+        
+        
+        ofxUISlider *makeRound = ( ofxUISlider *)e.widget;
+        
+        vector< Particles >::iterator p;
+        for( p = imgParticles.begin(); p != imgParticles.end(); p++){
+            
+            p->_drawingCir = makeRound->getScaledValue();
+            
+        }
     }
     
     
@@ -91,6 +117,7 @@ void testApp::addParticle(float x, float y){
 //    float xPos = (x + 0.5f) * 10.0;
 //    float yPos = (y + 0.5f) * 10.0;
     
+    //We multiply the position based on how many times we divded the length so that it fits
     float xPos = x * 20;
     float yPos = y * 20;
     

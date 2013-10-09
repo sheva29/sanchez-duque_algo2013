@@ -20,17 +20,13 @@ public:
     void update(ofImage img);
     
     
-    float diagonal, tempSize, rectSize, rectSizeMax;
+    float diagonal, tempSize, rectSize, rectSizeMax, _angle;
     
     ofColor pixelColor;
     
     ofVec2f pos;
     
-    float resCoe;
-    
-    
-    
-    
+    bool _drawingCir;
     
     
 private:
