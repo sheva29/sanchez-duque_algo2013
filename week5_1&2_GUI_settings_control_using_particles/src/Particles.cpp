@@ -16,7 +16,7 @@ Particles::Particles(ofVec2f position){
     diagonal = 0;
     tempSize = 0;
     rectSize = 0;
-    _drawingCir = false;
+//    _drawingCir = false;
     
 }
 
@@ -57,13 +57,17 @@ void Particles::draw(){
 //        ofSetRectMode(OF_RECTMODE_CENTER);
         ofRotate(_angle);
         
+        //Here we will decide to whether or not we want to draw circles or squares. _drawinCir will be passed to the GUI events function.
         if( _drawingCir == false){
             
-             ofRect(0, 0, rectSize, rectSize);
+             ofRect(0, 0, rectSize, rectSize);          
             
-        } else {
             
-            ofCircle(0,0, rectSize, rectSize);
+        }else if(_drawingCir == true){
+            
+            ofCircle(0,0, rectSize);
+            
+            
         }
        
     }ofPopMatrix();

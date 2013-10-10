@@ -14,7 +14,7 @@ void testApp::setup(){
     gui = new ofxUICanvas;
     gui->addLabel("Controller");
     gui->addSpacer();
-    gui->addButton("makeRound", false, 44,44);
+    gui->addToggle("Shape", false);
     //We give the GUI background a bit of transparency
     gui->setColorBack(ofColor(0, 50));
     gui->setWidgetColor(OFX_UI_WIDGET_COLOR_BACK, ofColor(0));
@@ -66,7 +66,21 @@ void testApp::onGuiEvent(ofxUIEventArgs &e){
     string name = e.widget->getName();
     int kind = e.widget->getKind();
     
-    if( name == "particleSize"){
+    if( name == "Shape"){
+        
+        
+        ofxUIButton*shape = ( ofxUIButton *)e.widget;
+        cout << name << "\t value: " << shape->getValue() << endl;
+        
+        vector< Particles >::iterator p;
+        for( p = imgParticles.begin(); p != imgParticles.end(); p++){
+            
+            p->_drawingCir = shape->getValue();
+            
+            
+            
+        }
+    }else if( name == "particleSize"){
         
         ofxUISlider *particleSize = (ofxUISlider *)e.widget;
         
@@ -77,12 +91,10 @@ void testApp::onGuiEvent(ofxUIEventArgs &e){
             //Here we assigned our value to the  size slider
             it->rectSizeMax = particleSize->getScaledValue();
             
-            cout << " Got a message!" << name << " - " << particleSize->getValue() << endl;
+          //  cout << " Got a message!" << name << " - " << particleSize->getValue() << endl;
         }
         
-    }
-    
-    if( name =="particleAngle"){
+    }else if( name =="particleAngle"){
         
         
         ofxUISlider *particleAngle = ( ofxUISlider *)e.widget;
@@ -95,19 +107,7 @@ void testApp::onGuiEvent(ofxUIEventArgs &e){
         }
         
     }
-    
-    if( e.getName() == "makeRound"){
-        
-        
-        ofxUISlider *makeRound = ( ofxUISlider *)e.widget;
-        
-        vector< Particles >::iterator p;
-        for( p = imgParticles.begin(); p != imgParticles.end(); p++){
-            
-            p->_drawingCir = makeRound->getScaledValue();
-            
-        }
-    }
+   
     
     
 }
@@ -161,6 +161,7 @@ void testApp::draw(){
             
 //            ofRotate(45);
             it->draw();
+        
         
     }
 
