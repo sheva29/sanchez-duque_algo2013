@@ -13,10 +13,12 @@ void testApp::setup(){
     amplitude = 175.0f;
     period = 500.0f;
     dx = (TWO_PI / period) * xSpacing;
-    yValues[w/xSpacing];
+    yValues_length = w/xSpacing;
+    coeVariable = 0;
+    
 
     cout << yValues << endl;
-    cout << yValues_SIZE << endl;
+
 
     
     
@@ -28,7 +30,7 @@ void testApp::calculateWave(){
     theta += 0.02f;
     
     float x = theta;
-    for( int i = 0; i < yValues_SIZE ; i++){
+    for( int i = 0; i < yValues_length; i++){
         
         yValues[i] = sin(x) * amplitude;
         x += dx;
@@ -41,11 +43,11 @@ void testApp::calculateWave(){
 //--------------------------------------------------------------
 void testApp::renderWave(){
     
-    for( int x = 0; x < yValues_SIZE; x++){
+    for( int x = 0; x < yValues_length; x++){
       
         ofSetRectMode(OF_RECTMODE_CENTER);
         ofNoFill();
-        ofEllipse( x * xSpacing, ofGetWindowWidth()/2 + yValues[x], yValues[(x + x) % 77] , yValues[(x + x + x) % 77]);
+        ofEllipse( x * xSpacing, ofGetWindowHeight()/2 + yValues[x], yValues[(x + x) % coeVariable ] , yValues[(x + x + x)  % coeVariable]);
     }
     
     
@@ -53,7 +55,7 @@ void testApp::renderWave(){
 //--------------------------------------------------------------
 void testApp::update(){
 //     xSpacing = sin( ofGetElapsedTimef());
-    
+    coeVariable = abs(mouseY) + 1;
     calculateWave();
     
     
@@ -63,6 +65,7 @@ void testApp::update(){
 void testApp::draw(){
     
    renderWave();
+    ofDrawBitmapString(ofToString(coeVariable), 100, 100);
 
 }
 

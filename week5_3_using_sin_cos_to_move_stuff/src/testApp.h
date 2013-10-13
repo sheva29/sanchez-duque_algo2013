@@ -1,7 +1,9 @@
-#pragma once
+// Taken from Matt Richard's open processing sketch http://www.openprocessing.org/sketch/1012
 
+
+#pragma once
 #include "ofMain.h"
-//#define yValues_SIZE 8
+
 
 class testApp : public ofBaseApp{
 
@@ -22,15 +24,19 @@ class testApp : public ofBaseApp{
     
     int xSpacing;
     int w;
+    int yValues_length;
     
     float theta;
     float amplitude;
     float period;
     float dx;
-    float yValues[8];
+    float yValues[1000];
+    
+    int coeVariable;
+    
     
     //we use a new int to declare the size of our initial yValues
-    const unsigned int yValues_SIZE = sizeof(yValues) / sizeof(yValues[0]);
+
 
     
     void calculateWave();
