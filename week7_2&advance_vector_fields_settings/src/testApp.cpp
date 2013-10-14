@@ -10,7 +10,7 @@ void testApp::setup(){
     
     
     gui = new ofxUICanvas();
-    gui->setPosition(785, 25);
+    gui->setPosition(1000, 25);
     gui->setHeight(160);
     
     //Here we create an array on names to pass and then we add it
