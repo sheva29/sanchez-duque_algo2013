@@ -30,7 +30,9 @@ class testApp : public ofBaseApp{
     
         vector<string> vectorNames;
     
-        bool randomDir;
+    int settingsSel;
+    
+  
     
 
     

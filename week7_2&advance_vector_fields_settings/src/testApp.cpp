@@ -3,6 +3,11 @@
 //--------------------------------------------------------------
 void testApp::setup(){
     
+    ofxXmlSettings vectorSettings;
+    vectorSettings.loadFile("vectorSettings.xml");
+    settingsSel = vectorSettings.getValue("vectorSettings:section", 0.0);
+    
+    
     
     gui = new ofxUICanvas();
     gui->setPosition(785, 25);
@@ -30,7 +35,7 @@ void testApp::setup(){
     
     myField.setup( ofGetWindowWidth(), ofGetWindowHeight(), 15 );
     
-    randomDir = true;
+  
     
     
     
@@ -39,6 +44,12 @@ void testApp::setup(){
 }
 
 void testApp::exit(){
+    
+    ofxXmlSettings vectorSettings;
+    vectorSettings.setValue("vectorSettings:selection", settingsSel);
+    vectorSettings.saveFile("vectorSettings.xml");
+    
+    gui->saveSettings("guiSettings.xml");
     
     delete gui;
 }
