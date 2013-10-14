@@ -29,5 +29,8 @@ class testApp : public ofBaseApp{
     ofVec3f pos;
     float setVel;
     float hue;
+    ofColor backC;
+    
+    ofEasyCam camView;
 		
 };

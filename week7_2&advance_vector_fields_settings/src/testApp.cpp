@@ -31,15 +31,7 @@ void testApp::setup(){
     
     gui->loadSettings("guiSettings.xml");
     
-    
-    
     myField.setup( ofGetWindowWidth(), ofGetWindowHeight(), 15 );
-    
-  
-    
-    
-    
-    
     
 }
 

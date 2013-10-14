@@ -24,6 +24,8 @@ public:
     float age, life, size;
     ofColor c;
     
+    ofEasyCam camView;
+    
     
     
     
