@@ -29,6 +29,7 @@ Circles::Circles(){
     
     
     
+    
 }
 
 void Circles::update(){
@@ -67,7 +68,11 @@ void Circles::renderWave(){
     
     
     for( int x = 0; x < yValues_length; x++){       
-        
+        int _redAdjust = (_r + x + ofGetFrameNum() + int(yValues[x]))%255;
+        int _greenAdjust = (_g + x * xSpacing)%255;
+        int _blueAdjust = (_b + int(yValues[x]))%255;
+        colorHsb.setHsb(_redAdjust, 255, 255);
+        ofSetColor(colorHsb);
         ofEllipse( x * xSpacing, ofGetWindowHeight()/2 + yValues[x], yValues[(x + x) % coeVariable ] , yValues[(x + x + x)  % coeVariable]);
     }
     

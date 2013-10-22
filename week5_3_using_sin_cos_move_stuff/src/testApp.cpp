@@ -7,6 +7,8 @@ void testApp::setup(){
     ofSetBackgroundAuto(false);
     ofEnableAlphaBlending();
     
+
+    
     
     gui = new ofxUICanvas;
     gui->addLabel("Circles Controlers");
@@ -115,17 +117,18 @@ void testApp::draw(){
     
     ofRect(0, 0, ofGetWindowWidth(), ofGetWindowHeight());
     
-    
     vector<Circles>::iterator it;
     for( it = circleList.begin(); it != circleList.end(); ++it){
-        
-        
         ofSetRectMode(OF_RECTMODE_CENTER);
-        ofSetColor(_red, _green,_blue);
         ofNoFill();
-        it->draw();
+        it->_r = _red;
+        it->_g = _green;
+        it->_b = _blue;
         
+        it->draw();
     }
+ 
+    
     
 }
 

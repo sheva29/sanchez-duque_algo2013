@@ -26,4 +26,8 @@ public:
     
     int coeVariable;
     
+    int _r, _g, _b;
+    
+    ofColor colorHsb;
+    
 };

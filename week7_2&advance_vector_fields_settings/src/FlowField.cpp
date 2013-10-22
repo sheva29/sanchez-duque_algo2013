@@ -85,7 +85,7 @@ void FlowField::setModularAm(){
 void FlowField::setSin(){
     for( int y = 0; y < flowList.size(); y++){
         for( int x = 0; x < flowList[y].size(); x++){
-            flowList[x][y].set( sin(x), sin(y));
+            flowList[x][y].set( sin(x), cos(y));
             
             
         }
