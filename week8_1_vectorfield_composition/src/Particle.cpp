@@ -13,7 +13,7 @@ Particle::Particle(){
     
     mass = .5;
     
-    damping = 0.9999998;
+    damping = ofRandom( 0.9999998, 0.98);
     
 }
 
