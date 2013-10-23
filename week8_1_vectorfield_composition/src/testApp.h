@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "FlowField.h"
+#include "Particle.h"
 
 
 class testApp : public ofBaseApp{
@@ -11,6 +12,7 @@ class testApp : public ofBaseApp{
 		void update();
 		void draw();
         void exit();
+        void addParticle();
 
 		void keyPressed(int key);
 		void keyReleased(int key);
@@ -22,6 +24,10 @@ class testApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
     
+    //Using pointers, yeah!!!!!!!!
     FlowField  *myField;
+    vector < Particle > *particleList;
+    
+    bool vectField;
 		
 };

@@ -3,13 +3,24 @@
 //--------------------------------------------------------------
 void testApp::setup(){
     
+    ofBackground(0);
+    
     myField = new FlowField;
     
+    particleList = new vector< Particle>;
+    
+    vectField = new bool;
+  
    
     myField->setup(ofGetWindowWidth(), ofGetWindowHeight(), 20 );
-   
     
-    ofBackground(0);
+    vectField = false;
+   
+    for( int i = 0; i < 10000; i++){
+        
+        addParticle();
+    }
+   
 
 }
 
@@ -18,22 +29,106 @@ void testApp::setup(){
 void testApp::exit(){
     
     delete myField;
+    delete particleList;
+
+    
+}
+
+void testApp::addParticle(){
+    
+    Particle  tmp;
+    tmp.pos = ofVec2f( ofRandomWidth(), ofRandomHeight());
+    particleList->push_back(tmp);
+    
+    
     
 }
 void testApp::update(){
 
     myField->update();
+    
+    
+    vector< Particle>::iterator it;
+    for( it = particleList->begin(); it != particleList->end(); it++){
+        
+        it->applyForce(myField->getForcePostion(it->pos) * 0.005);
+        it->update();
+        
+        if( it->pos.x < 0 ){
+
+            it->pos.x = ofGetWindowWidth();
+            
+//            particleList->erase(it);
+//            addParticle();
+        }
+        
+        if( it->pos.x > ofGetWindowWidth() ){
+            
+            it->pos.x = 0;
+        }
+        
+        
+        if( it->pos.y < 0){
+            
+            it->pos.y = ofGetWindowHeight();
+        }
+        
+        if( it->pos.y > ofGetWindowHeight()){
+            
+            it->pos.y = 0;
+        }
+    }
+    
+    
+
+    
+   
 }
 
 //--------------------------------------------------------------
 void testApp::draw(){
 
+    if( vectField){
+        
+     myField->draw();
+        
+    }
     
-    myField->draw();
+    vector< Particle >::iterator it;
+    for ( it = particleList->begin(); it != particleList->end(); it++){
+        
+        it->draw();
+    }
+    
 }
 
 //--------------------------------------------------------------
 void testApp::keyPressed(int key){
+    
+    if( key == '1'){
+        
+        myField->setPerlin();
+    }
+    
+    if( key == '2'){
+        
+        myField->setRandom();
+    }
+    
+    if ( key == '3'){
+        
+        myField->setAM();
+    }
+    
+    if(  key == '4'){
+        
+        myField->setInWardForce();
+    }
+    
+    if( key == 'F' || key == 'f'){
+        
+        vectField = !vectField;
+    }
 
 }
 
@@ -59,10 +154,10 @@ void testApp::mouseDragged(int x, int y, int button){
 //        myField->addCircularForce(x, y, 300, 2.0);
        
         //Sine force
-//        myField->addSineForce(x, y, 150, 2.0);
+       myField->addSineForce(x, y, 150, 2.0);
         
         //Amplitude Modulation
-        myField->addModularAmplitudeForce(x, y, 200, 2.0);
+//        myField->addModularAmplitudeForce(x, y, 200, 2.0);
         
     }else{
         myField->addAttractForce(x, y, 100, 2.0);

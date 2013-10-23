@@ -29,8 +29,13 @@ void FlowField::setup( int width, int height, int res ){
         
         for( int x=0; x<cols; x++){
             //This determines the length of the vector
-            ofVec2f dir(10,0);
-            flowList[y].push_back( dir );
+//            ofVec2f dir(10,0);
+//            flowList[y].push_back( dir );
+            
+            //We set our vector to amplitude modulation
+            ofVec2f dir;
+            dir.set(2 * cos( 2 * cos(x)), 2 * cos( 2 * sin(x)));
+            flowList[y].push_back(dir);
         }
     }
 }
@@ -52,16 +57,48 @@ void FlowField::setPerlin() {
     }
 }
 
+void FlowField::setAM(){
+    for( int y = 0; y < flowList.size(); y++){
+        for( int x = 0; x < flowList[y].size(); x++){
+            
+            ofVec2f dir;
+            
+            dir.set(2 * cos( 2 * cos(x)), 2 * cos( 2 * sin(x)));
+            flowList[y][x].set( dir);
+            
+        }
+    }
+    
+}
+
 void FlowField::update() {
     for( int y=0; y<flowList.size(); y++){
         for( int x=0; x<flowList[y].size(); x++){
             //This sets the damping
-            flowList[y][x] *= 0.99;
+//            flowList[y][x] *= 0.99;
             
             if( flowList[y][x].length() < 1.0){
                 flowList[y][x].normalize();
             }
             
+        }
+    }
+}
+
+void FlowField::setInWardForce() {
+    
+    ofVec2f center( (ofGetWindowWidth() / 2) - resolution, (ofGetWindowHeight() / 2) - resolution);
+    float strength = 40;
+    for( int y = 0; y < flowList.size(); y++){
+        for(int x = 0; x < flowList[y].size(); x++){
+            
+            ofVec2f np ( x * resolution,  y * resolution);
+            
+            ofVec2f dir = ( center - np);
+            dir.normalize();
+            flowList[y][x].set(dir * strength);
+
+        
         }
     }
 }
@@ -78,7 +115,7 @@ ofVec2f FlowField::getForcePostion(ofVec2f pos){
     int yVal = ofClamp( pctY * rows, 0 , rows -1);
     
     ofVec2f newPos;
-    newPos.set( flowList[xVal][yVal] );
+    newPos.set( flowList[yVal][xVal] );
     
     return newPos;
     
@@ -186,7 +223,7 @@ void FlowField::addModularAmplitudeForce(float x, float y, float radius, float s
     ofVec2f mousePos( x,y);
     
     for( int y = 0; y < flowList.size(); y++){
-        for( int x = 0; x < flowList.size(); x++){
+        for( int x = 0; x < flowList[y].size(); x++){
             
             ofVec2f np ( x * resolution, y * resolution);
             

@@ -20,6 +20,8 @@ public:
     void setRandom( const float &strength = 10.0f);
     //Sets the vector field to Perlin noise
     void setPerlin();
+    void setAM();
+    void setInWardForce();
     
     void update();
     void draw();
