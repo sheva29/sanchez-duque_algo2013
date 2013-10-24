@@ -35,7 +35,7 @@ void FlowField::setup( int width, int height, int res ){
             //We set our vector to amplitude modulation
             ofVec2f dir;
             dir.set(2 * cos( 2 * cos(x)), 2 * cos( 2 * sin(x)));
-            flowList[y].push_back(dir);
+            flowList[y].push_back(dir * 10);
         }
     }
 }
@@ -64,7 +64,7 @@ void FlowField::setAM(){
             ofVec2f dir;
             
             dir.set(2 * cos( 2 * cos(x)), 2 * cos( 2 * sin(x)));
-            flowList[y][x].set( dir);
+            flowList[y][x].set( dir * 20);
             
         }
     }
@@ -74,7 +74,7 @@ void FlowField::setAM(){
 void FlowField::update() {
     for( int y=0; y<flowList.size(); y++){
         for( int x=0; x<flowList[y].size(); x++){
-            //This sets the damping
+            //This sets the damping in our Vector Field
 //            flowList[y][x] *= 0.99;
             
             if( flowList[y][x].length() < 1.0){

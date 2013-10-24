@@ -4,19 +4,20 @@
 void testApp::setup(){
     
     ofBackground(0);
+    ofSetBackgroundAuto(false);
     
     myField = new FlowField;
     
     particleList = new vector< Particle>;
     
-    vectField = new bool;
+    particleList->clear();
   
    
     myField->setup(ofGetWindowWidth(), ofGetWindowHeight(), 20 );
     
     vectField = false;
    
-    for( int i = 0; i < 10000; i++){
+    for( int i = 0; i < 50000; i++){
         
         addParticle();
     }
@@ -88,6 +89,13 @@ void testApp::update(){
 //--------------------------------------------------------------
 void testApp::draw(){
 
+    
+    
+    ofColor _black = 0;
+    
+    ofSetColor(_black,20);
+    ofRect(0, 0, ofGetWindowWidth(), ofGetWindowHeight());
+    
     if( vectField){
         
      myField->draw();
@@ -97,6 +105,7 @@ void testApp::draw(){
     vector< Particle >::iterator it;
     for ( it = particleList->begin(); it != particleList->end(); it++){
         
+        ofSetColor( (ofRandom(255)), (ofRandom(255)), ofRandom(255));
         it->draw();
     }
     
@@ -128,6 +137,11 @@ void testApp::keyPressed(int key){
     if( key == 'F' || key == 'f'){
         
         vectField = !vectField;
+    }
+    
+    if( key =='r' || key == 'R'){
+        
+        setup();
     }
 
 }

@@ -25,5 +25,5 @@ public:
     void update();
     void draw();
     
-    
+    ofColor c;
 };

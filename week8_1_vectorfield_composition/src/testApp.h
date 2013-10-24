@@ -28,6 +28,7 @@ class testApp : public ofBaseApp{
     FlowField  *myField;
     vector < Particle > *particleList;
     
+    
     bool vectField;
 		
 };

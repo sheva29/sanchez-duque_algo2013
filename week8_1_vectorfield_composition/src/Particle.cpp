@@ -15,6 +15,8 @@ Particle::Particle(){
     
     damping = ofRandom( 0.9999998, 0.98);
     
+    c.setHsb(ofRandom(255), 255, 255);
+    
 }
 
 void Particle::applyForce( ofVec2f force){
@@ -38,8 +40,8 @@ void Particle::update(){
 
 void Particle::draw(){
     
-    
-    ofSetColor( (ofRandom(255)), (ofRandom(255)), ofRandom(255));
+    ofSetColor(c);
+//    ofSetColor( (ofRandom(255)), (ofRandom(255)), ofRandom(255));
     ofCircle( pos, mass * 3);
     
     

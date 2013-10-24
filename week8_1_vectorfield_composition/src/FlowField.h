@@ -23,6 +23,7 @@ public:
     void setAM();
     void setInWardForce();
     
+    
     void update();
     void draw();
     
