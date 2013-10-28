@@ -105,7 +105,7 @@ void testApp::draw(){
     vector< Particle >::iterator it;
     for ( it = particleList->begin(); it != particleList->end(); it++){
         
-        ofSetColor( (ofRandom(255)), (ofRandom(255)), ofRandom(255));
+//        ofSetColor( (ofRandom(255)), (ofRandom(255)), ofRandom(255));
         it->draw();
     }
     

@@ -26,4 +26,6 @@ public:
     void draw();
     
     ofColor c;
+    
+    float hue;
 };

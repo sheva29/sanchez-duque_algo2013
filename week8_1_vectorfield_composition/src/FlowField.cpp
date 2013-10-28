@@ -88,7 +88,7 @@ void FlowField::update() {
 void FlowField::setInWardForce() {
     
     ofVec2f center( (ofGetWindowWidth() / 2) - resolution, (ofGetWindowHeight() / 2) - resolution);
-    float strength = 40;
+    float strength = 1200;
     for( int y = 0; y < flowList.size(); y++){
         for(int x = 0; x < flowList[y].size(); x++){
             
@@ -110,6 +110,8 @@ ofVec2f FlowField::getForcePostion(ofVec2f pos){
     
     int cols = fieldWidth / resolution;
     int rows = fieldHeight/resolution;
+    
+//    int cols = flowList[0].size();
     
     int xVal = ofClamp( pctX * cols, 0, cols -1);
     int yVal = ofClamp( pctY * rows, 0 , rows -1);
