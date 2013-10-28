@@ -15,7 +15,8 @@ void testApp::setup(){
         
         addCar();
         addDestination();
-        
+     
+        cout << dest->size() << endl;
     }
     
 
