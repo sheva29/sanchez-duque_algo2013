@@ -13,18 +13,18 @@ class Car{
     
 public:
     
-    Car( ofVec2f _pos, ofVec2f _vel, ofColor _color);
+    Car( ofVec2f _pos, ofVec2f _vel, ofColor _color, ofVec2f _dest);
     
     void draw();
     void update();
    
     void applyForce( ofVec2f force );
     void addRepulsionForce( const ofVec2f &fromPos);
-    void seek( ofVec2f dest);
+    void seek( ofVec2f _dest);
     
     float maxSpeed, maxForce, slowDownRadius;
     
-    ofVec2f pos, vel, accel, damping;
+    ofVec2f pos, vel, accel, damping, dest;
     
     ofColor color;
 

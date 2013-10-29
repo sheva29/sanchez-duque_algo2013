@@ -12,7 +12,7 @@ class testApp : public ofBaseApp{
 		void draw();
         void exit();
         void addCar();
-        void addDestination();
+        
     
 		void keyPressed(int key);
 		void keyReleased(int key);
@@ -25,7 +25,7 @@ class testApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
     
     vector < Car > *carList;
-    vector < ofVec2f > *dest;
+    
     
 		
 };

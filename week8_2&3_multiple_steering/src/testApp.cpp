@@ -9,14 +9,11 @@ void testApp::setup(){
     ofEnableAlphaBlending();
     
     carList = new vector < Car >;
-    dest = new vector < ofVec2f >;
+    
     
     for( int i = 0; i < NUM_OBJECTS; i++){
         
         addCar();
-        addDestination();
-     
-        cout << dest->size() << endl;
     }
     
 
@@ -25,7 +22,6 @@ void testApp::setup(){
 void testApp::exit(){
     
     delete carList;
-    delete dest;
     
 }
 //--------------------------------------------------------------
@@ -34,59 +30,55 @@ void testApp::addCar(){
     ofVec2f _pos = ofGetWindowSize()/2;
     ofVec2f _vel = ofVec2f(ofRandom( -5 , 10));
     ofColor _color = ofColor( 255 );
+    ofVec2f _dest =ofVec2f( ofRandom( ofGetWindowWidth()), ofRandom( ofGetWindowHeight()));
     
-    Car tmp( _pos, _vel, _color);
-    carList->push_back(tmp);
-    
-    
-}
-//--------------------------------------------------------------
-void testApp::addDestination(){
-    
-    ofVec2f _dest =ofVec2f( ofRandomWidth(), ofRandomHeight());
-    dest->push_back(_dest);
-    
+    Car tmp( _pos, _vel, _color, _dest);
+    carList->push_back(tmp);    
     
 }
 
 //--------------------------------------------------------------
 void testApp::update(){
     
+    
+    
+    
     vector<Car>::iterator c1;
+    
     for( c1 = carList->begin(); c1 != carList->end(); c1++){
         
-        vector<Car>::iterator c2 = c1 +1;
+        c1->seek(c1->dest);
         
-        vector < ofVec2f >::iterator d;
-        for( d = dest->begin(); d != dest->end(); d++){
-            
-            c1->seek(*d);
-            
-            if( c1->pos.distance(c2->pos)){
-                
-                c1->color = ofColor( 255, 0 ,0);
-                c2->color = ofColor( 255, 0 ,0);
-                
-                c1->addRepulsionForce(c2->pos);
-                c2->addRepulsionForce(c1->pos);
-                
-            }else{
-                
-                c1->color = ofColor(255);
-                c2->color = ofColor(255);
-                
-                
-            }
-            
-            c1->update();
+        vector<Car>::iterator c2 = c1 + 1;
+        
+        if( c1->pos.distance(c2->pos)){
             
             
-//            if( c1->pos.distance( *d ) < 5){
-//                
-//                d++;
-//            }
+            c1->color = ofColor( 255,0,0);
+            c2->color =ofColor( 255,0,0);
+            
+            c1->addRepulsionForce(c2->pos);
+            c2->addRepulsionForce(c1->pos);
+            
+            
+        }else{
+            
+            c1->color = ofColor(255);
+            c2->color = ofColor(255);
+            
+           
+        }
+        
+        if(c1->pos.distance(c1->dest) < 5){
+            
+            c1->dest = ofVec2f( ofRandom( ofGetWindowWidth()), ofRandom(ofGetWindowHeight()));
+            
             
         }
+        
+        c1->update();
+        
+        
         
     }
 }
@@ -94,17 +86,13 @@ void testApp::update(){
 //--------------------------------------------------------------
 void testApp::draw(){
     
-    vector<Car>::iterator it;
+    vector <Car>::iterator it;
     for( it = carList->begin(); it != carList->end(); it++){
         
-        vector< ofVec2f >::iterator d;
-        for( d = dest->begin(); d != dest->end(); d++){
-            
-            ofSetColor( it->color);
-            ofCircle( *d, 4);
-        }
+        ofSetColor(it->color);
+        ofCircle(it->dest, 4);
         
-        
+        it->draw();
     }
 
 }
