@@ -21,7 +21,7 @@ Car::Car( ofVec2f _pos, ofVec2f _vel, ofColor _color, ofVec2f _dest){
     maxSpeed = 10.0;
     maxForce = 0.4;
     
-    slowDownRadius = 25.0;
+    slowDownRadius = 100.0;
     
     
     
@@ -92,8 +92,8 @@ void Car::draw(){
         ofTranslate(pos);
         float rotAmt = atan2( vel.y, vel.x);
         ofRotate( ofRadToDeg(rotAmt) + 90);
-        ofNoFill();
-        ofCircle(0,0,slowDownRadius, slowDownRadius );
+//        ofNoFill();
+//        ofCircle(0,0,slowDownRadius, slowDownRadius );
         ofFill();
         ofRect( 0,0, 5,10 );
         

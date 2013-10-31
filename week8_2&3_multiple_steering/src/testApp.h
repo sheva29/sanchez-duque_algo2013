@@ -2,7 +2,7 @@
 
 #include "ofMain.h"
 #include "Car.h"
-#define NUM_OBJECTS 5
+#define NUM_OBJECTS 100
 
 class testApp : public ofBaseApp{
 
@@ -25,6 +25,8 @@ class testApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
     
     vector < Car > *carList;
+    
+   
     
     
 		

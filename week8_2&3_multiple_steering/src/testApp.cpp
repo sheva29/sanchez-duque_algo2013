@@ -29,7 +29,8 @@ void testApp::addCar(){
     
     ofVec2f _pos = ofGetWindowSize()/2;
     ofVec2f _vel = ofVec2f(ofRandom( -5 , 10));
-    ofColor _color = ofColor( 255 );
+    ofColor _color;
+    _color.setHsb(ofRandom(255), 255, 255);
     ofVec2f _dest =ofVec2f( ofRandom( ofGetWindowWidth()), ofRandom( ofGetWindowHeight()));
     
     Car tmp( _pos, _vel, _color, _dest);
@@ -40,9 +41,6 @@ void testApp::addCar(){
 //--------------------------------------------------------------
 void testApp::update(){
     
-    
-    
-    
     vector<Car>::iterator c1;
     
     for( c1 = carList->begin(); c1 != carList->end(); c1++){
@@ -51,11 +49,11 @@ void testApp::update(){
         
         vector<Car>::iterator c2 = c1 + 1;
         
-        if( c1->pos.distance(c2->pos)){
+        if( c1->pos.distance(c2->pos) < 100){
             
             
-            c1->color = ofColor( 255,0,0);
-            c2->color =ofColor( 255,0,0);
+//            c1->color = ofColor( 255,0,0);
+//            c2->color =ofColor( 255,0,0);
             
             c1->addRepulsionForce(c2->pos);
             c2->addRepulsionForce(c1->pos);
@@ -63,8 +61,8 @@ void testApp::update(){
             
         }else{
             
-            c1->color = ofColor(255);
-            c2->color = ofColor(255);
+//            c1->color = ofColor(255);
+//            c2->color = ofColor(255);
             
            
         }
@@ -90,7 +88,7 @@ void testApp::draw(){
     for( it = carList->begin(); it != carList->end(); it++){
         
         ofSetColor(it->color);
-        ofCircle(it->dest, 4);
+        ofCircle(it->dest, 1.5);
         
         it->draw();
     }
