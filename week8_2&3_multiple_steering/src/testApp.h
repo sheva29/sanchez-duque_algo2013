@@ -2,7 +2,7 @@
 
 #include "ofMain.h"
 #include "Car.h"
-#define NUM_OBJECTS 100
+#define NUM_OBJECTS 1000
 
 class testApp : public ofBaseApp{
 

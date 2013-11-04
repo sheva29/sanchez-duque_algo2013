@@ -60,20 +60,11 @@ void testApp::draw(){
     vector<Particle>::iterator it2 = particleList->begin() + 3;
     for( it; it != particleList->end(); it++){
         
-        
         it->draw();
-//        advance(it, 3);
-        
         ofDrawBitmapString(ofToString(it2->vel), 20, 20);
-        
         
     }
     
-    vector<Particle>::iterator p = particleList->begin();
-    for( p; p != particleList->end(); p++){
-        
-
-    }
     
 }
 

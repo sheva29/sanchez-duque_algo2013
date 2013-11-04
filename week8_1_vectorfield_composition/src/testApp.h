@@ -30,5 +30,7 @@ class testApp : public ofBaseApp{
     
     
     bool vectField;
+    
+    int _number = 200;
 		
 };

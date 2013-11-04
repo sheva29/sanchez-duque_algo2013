@@ -94,7 +94,7 @@ void FlowField::setInWardForce() {
             
             ofVec2f np ( x * resolution,  y * resolution);
             
-            ofVec2f dir = ( center - np);
+           ofVec2f dir = ( center - np);
             dir.normalize();
             flowList[y][x].set(dir * strength);
 

@@ -42,8 +42,9 @@ void testApp::addCar(){
 void testApp::update(){
     
     vector<Car>::iterator c1;
-    
-    for( c1 = carList->begin(); c1 != carList->end(); c1++){
+    vector<Car>::iterator c3 = carList->begin();
+    std::advance(c3, 4);
+    for( c1 = carList->begin(); c1 != carList->end(); c1++, c3++){
         
         c1->seek(c1->dest);
         
