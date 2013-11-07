@@ -42,33 +42,33 @@ void Particle::update(){
 //    atan(vel.x / vel.x);
     
     
-    if( pos.x < 10){
+    if( pos.x < 0){
         
-        vel.x = -vel.x;
+        pos.x = ofGetWindowWidth();
         
     }
     
     if ( pos.x > ofGetWindowWidth() - 10){
         
-        vel.x = -vel.x;
+        pos.x = 0;
     }
     
-    if( pos.y < 10 ){
+    if( pos.y < 0 ){
         
-        vel.y = -vel.y;
+        pos.y = ofGetWindowHeight();
     }
     
-    if ( pos.y > ofGetWindowHeight() - 10){
+    if ( pos.y > ofGetWindowHeight()){
         
-        vel.y = -vel.y;
+        pos.y = 0;
         
     }
     
-    yStreching = ofMap(vel.y, -2, 2, 1.0f, 1.1);
-    
-    xStreching = ofMap(vel.x, -2, 2, 1.0f, 1.1);
-    
-   
+    //Add true at the end of the ofMap to clamp it! Thanks Jennifer :)
+    yStreching = ofMap(vel.length(), 0, 2, 1.0, 2.0, true);
+
+    cout << yStreching << endl;
+
     
 }
 
@@ -77,7 +77,9 @@ void Particle::draw(){
     
     //Assigned the position to the direction which equals the direction of the velocity, the particles strech in the right direction when moving towards one of the side of the screen
     
-    float angle = dir.length();
+    float angle = atan2(vel.x, vel.y);
+    angle = ofMap(angle, -PI, PI, 0, 360);
+    
     
     
     c.setHsb(hue, 255, 255);
@@ -87,8 +89,8 @@ void Particle::draw(){
     ofPushMatrix();{
         
         ofTranslate( pos);
-        ofRotate (  angle );
-        ofEllipse( 0, 0, (mass * massCoe) * xStreching, (mass * massCoe) * yStreching);
+        ofRotate (  -angle );
+        ofEllipse( 0, 0, (mass * massCoe), (mass * massCoe) * yStreching);
         
     }ofPopMatrix();
   
