@@ -20,11 +20,11 @@ void FlowField::setup( int width, int height, int res ){
         flowList.push_back( myList );
         
         for( int x=0; x < cols; x++){
-            //This determines the length of the vector
+//This determines the length of the vector
 //            ofVec2f dir(10,0);
 //            flowList[y].push_back( dir );
             
-            //We set our vector to amplitude modulation
+//We set our vector to amplitude modulation
             ofVec2f dir;
             dir.set(sin( x), cos(x));
             flowList[y].push_back(dir * 10);
@@ -73,6 +73,11 @@ void FlowField::update() {
             if( flowList[y][x].length() < 1.0){
                 flowList[y][x].normalize();
             }
+            
+            
+            
+           
+            
             
         }
     }

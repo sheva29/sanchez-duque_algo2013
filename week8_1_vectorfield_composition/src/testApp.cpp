@@ -17,7 +17,7 @@ void testApp::setup(){
     
     vectField = false;
    
-    for( int i = 0; i < 50000; i++){
+    for( int i = 0; i < 5000; i++){
         
         addParticle();
     }

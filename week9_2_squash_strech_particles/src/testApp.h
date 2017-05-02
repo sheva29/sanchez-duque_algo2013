@@ -3,7 +3,7 @@
 #include "ofMain.h"
 #include "FlowField.h"
 #include "Particle.h"
-#define NUM_OF_PARTICLES 10
+#define NUM_OF_PARTICLES 20
 
 
 class testApp : public ofBaseApp{
